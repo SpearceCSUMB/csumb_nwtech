@@ -35,7 +35,8 @@ def removeRedEye(pic):
       setColor(p,newColor)
 
 def testRedEye():
-  rootPath = r'H:\My Drive\Personal\school\CST205\nwtech.github.io\Module 2'
+  # Set this path to where your module 2 github repository is
+  rootPath = r'C:\dev\cs205\csumb_nwtech\Module 2'
   redEyePath = os.path.join(rootPath,"redeye.jpg")
   redEyePic = makePicture(redEyePath)
   noRedEyePic = copyPic(redEyePic)
@@ -43,4 +44,65 @@ def testRedEye():
   removeRedEye(noRedEyePic)
   repaint(noRedEyePic)
 
-      
+#Problem 1:
+def makeSepia(pic):
+  pixels = getPixels(pic)
+  for p in pixels:
+    r = getRed(p)
+    g = getGreen(p)
+    b = getBlue(p)
+    luminance = r*0.299 + g*0.587 + b*0.114
+    redMult = 1
+    blueMult = 1
+    blue
+    if(r < 63):
+      redMult = 1.1
+      blueMult = 0.9
+    elif(62 < r and r < 192):
+      redMult = 1.15
+      blueMult = 0.85
+    else:
+      redMult = 1.08
+      blueMult = 0.93    
+    r = redMult * luminance
+    r = min(r,255)
+    b = blueMult * luminance
+    setRed(p,r)
+    setGreen(p,luminance)
+    setBlue(p,b)
+  return pic
+
+
+#Problem 3
+
+def chromakey(foregroundPic,backgroundPic):
+  greenScreenColor = makeColor(50,150,50)
+  foregroundPixels = getPixels(foregroundPic)
+  for row in range(foregroundPic.getHeight()):
+      for col in range(foregroundPic.getWidth()):
+        foregroundPixel = getPixel(foregroundPic,col,row)
+        pixelColor = getColor(foregroundPixel)
+        dist = distance(pixelColor,greenScreenColor)
+        if(dist < 75):
+          backgroundPixel = getPixel(backgroundPic,col,row)
+          backgroundColor = getColor(backgroundPixel)
+          setColor(foregroundPixel,backgroundColor)
+  return foregroundPic        
+
+
+def testProblem1():
+  rootPath = r'C:\dev\cs205\csumb_nwtech\Module 2'
+  originalPath = os.path.join(rootPath,"1.jpg")
+  originalPic = makePicture(originalPath)
+  originalPic = makeSepia(originalPic)
+  show(originalPic)
+
+def testProblem3():
+  rootPath = r'C:\dev\cs205\csumb_nwtech\Module 2'
+  foregroundPath = os.path.join(rootPath,"henry_greenscreen.jpg")
+  backgroundPath = os.path.join(rootPath,"outdoors.jpg")
+  backgroundPic = makePicture(backgroundPath)
+  foregroundPic = makePicture(foregroundPath)
+  foregroundPic = chromakey(foregroundPic,backgroundPic)
+  show(foregroundPic)  
+  
