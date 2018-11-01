@@ -26,7 +26,7 @@ def removeRedEye(pic):
   for p in pixels:
     pixelColor = getColor(p)
     dist = distance(pixelColor,redEyeColor)
-    if(dist < 75):
+    if(dist < 62):
       #desaturate the color if it's too close to redeye
       r = getRed(p)
       g = getGreen(p)
@@ -37,7 +37,7 @@ def removeRedEye(pic):
 
 def testRedEye():
   # Set this path to where your module 2 github repository is
-  rootPath = r'C:\dev\cs205\csumb_nwtech\Module 2'
+  rootPath = r'C:\dev\csumb_nwtech\Module 2'
   redEyePath = os.path.join(rootPath,"redeye.jpg")
   redEyePic = makePicture(redEyePath)
   noRedEyePic = copyPic(redEyePic)
@@ -55,7 +55,6 @@ def makeSepia(pic):
     luminance = r*0.299 + g*0.587 + b*0.114
     redMult = 1
     blueMult = 1
-    blue
     if(r < 63):
       redMult = 1.1
       blueMult = 0.9
@@ -92,14 +91,14 @@ def chromakey(foregroundPic,backgroundPic):
 
 
 def testProblem1():
-  rootPath = r'C:\dev\cs205\csumb_nwtech\Module 2'
+  rootPath = r'C:\dev\csumb_nwtech\Module 2'
   originalPath = os.path.join(rootPath,"1.jpg")
   originalPic = makePicture(originalPath)
   originalPic = makeSepia(originalPic)
   show(originalPic)
 
 def testProblem3():
-  rootPath = r'C:\dev\cs205\csumb_nwtech\Module 2'
+  rootPath = r'C:\dev\csumb_nwtech\Module 2'
   foregroundPath = os.path.join(rootPath,"henry_greenscreen.jpg")
   backgroundPath = os.path.join(rootPath,"outdoors.jpg")
   backgroundPic = makePicture(backgroundPath)
