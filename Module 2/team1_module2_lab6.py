@@ -133,16 +133,18 @@ def testProblem2():
 def testProblem3():
   rootPath = ''
   rootPath = r'C:\dev\csumb_nwtech\Module 2\Green Screens'
-  foregroundPath = os.path.join(rootPath,"Richie Still 3.png")
-  backgroundPath = os.path.join(rootPath,"fall.jpg")
-  backgroundPic = makePicture(backgroundPath)
-  foregroundPic = makePicture(foregroundPath)
-  foregroundPic = chromakey(foregroundPic,backgroundPic)
-  
-  foregroundPath = os.path.join(rootPath,"eagle.jpg")
+
+  foregroundPath = os.path.join(rootPath,"eagle.png")
   backgroundPath = os.path.join(rootPath,"outdoors.jpg")
   backgroundPic = makePicture(backgroundPath)
   foregroundPic = makePicture(foregroundPath)
   foregroundPic = chromakey(foregroundPic,backgroundPic)
   show(foregroundPic)  
+  return
+  foregroundPath = os.path.join(rootPath,"Richie Still 3.png")
+  backgroundPath = os.path.join(rootPath,"fall.jpg")
+  backgroundPic = makePicture(backgroundPath)
+  foregroundPic = makePicture(foregroundPath)
+  foregroundPic = chromakey(foregroundPic,backgroundPic)
+  show(foregroundPic)
   
