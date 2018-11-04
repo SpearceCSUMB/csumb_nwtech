@@ -99,14 +99,17 @@ def Artify(pic):
     
 #Problem 3
 def chromakey(foregroundPic,backgroundPic):
-  greenScreenColor = makeColor(50,150,50)
+  if(foregroundPic.getWidth() != backgroundPic.getWidth() or
+    foregroundPic.getHeight() != backgroundPic.getHeight()):
+    print("Foreground and background pictures must be the same size.")
+  greenScreenColor = makeColor(0,255,0)
   foregroundPixels = getPixels(foregroundPic)
   for row in range(foregroundPic.getHeight()):
       for col in range(foregroundPic.getWidth()):
         foregroundPixel = getPixel(foregroundPic,col,row)
         pixelColor = getColor(foregroundPixel)
         dist = distance(pixelColor,greenScreenColor)
-        if(dist < 75):
+        if(dist < 185):
           backgroundPixel = getPixel(backgroundPic,col,row)
           backgroundColor = getColor(backgroundPixel)
           setColor(foregroundPixel,backgroundColor)
@@ -128,8 +131,15 @@ def testProblem2():
   show(originalPic)
 
 def testProblem3():
-  rootPath = r'C:\dev\csumb_nwtech\Module 2'
-  foregroundPath = os.path.join(rootPath,"henry_greenscreen.jpg")
+  rootPath = ''
+  rootPath = r'C:\dev\csumb_nwtech\Module 2\Green Screens'
+  foregroundPath = os.path.join(rootPath,"Richie Still 3.png")
+  backgroundPath = os.path.join(rootPath,"fall.jpg")
+  backgroundPic = makePicture(backgroundPath)
+  foregroundPic = makePicture(foregroundPath)
+  foregroundPic = chromakey(foregroundPic,backgroundPic)
+  
+  foregroundPath = os.path.join(rootPath,"eagle.jpg")
   backgroundPath = os.path.join(rootPath,"outdoors.jpg")
   backgroundPic = makePicture(backgroundPath)
   foregroundPic = makePicture(foregroundPath)
