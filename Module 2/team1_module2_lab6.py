@@ -73,8 +73,31 @@ def makeSepia(pic):
   return pic
 
 
+#Problem 2
+def getArtifiedPixel(p):
+  #This is an ordered list of tuples. The first value is the 
+  #upper range value to compare against. The second value is
+  #the value to replace the original pixel with.
+  colorSubstitutionTable = [(64,31),(128,95),(192,159),(256,223)]
+  for tuple in colorSubstitutionTable:
+    #If this pixel's value is less than the first value
+    #in the tuple, return the second value
+    if(p < tuple[0]):
+      return tuple[1]
+  return p
+  
+def Artify(pic):
+  pixels = getPixels(pic)
+  for p in pixels:
+    r = getRed(p)
+    g = getGreen(p)
+    b = getBlue(p)
+    setRed(p,getArtifiedPixel(r))
+    setGreen(p,getArtifiedPixel(g))
+    setBlue(p,getArtifiedPixel(b))
+  return pic
+    
 #Problem 3
-
 def chromakey(foregroundPic,backgroundPic):
   greenScreenColor = makeColor(50,150,50)
   foregroundPixels = getPixels(foregroundPic)
@@ -95,6 +118,13 @@ def testProblem1():
   originalPath = os.path.join(rootPath,"1.jpg")
   originalPic = makePicture(originalPath)
   originalPic = makeSepia(originalPic)
+  show(originalPic)
+
+def testProblem2():
+  rootPath = r'C:\dev\csumb_nwtech\Module 2'
+  originalPath = os.path.join(rootPath,"1.jpg")
+  originalPic = makePicture(originalPath)
+  originalPic = Artify(originalPic)
   show(originalPic)
 
 def testProblem3():
