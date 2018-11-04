@@ -34,6 +34,16 @@ def removeRedEye(pic):
       newColor = makeColor(luminance,luminance,luminance)
       setColor(p,newColor)
 
+def crazyRedEye(pic):
+  redEyeColor = makeColor(223,68,84)
+  pixels = getPixels(pic)
+  for p in pixels:
+    pixelColor = getColor(p)
+    dist = distance(pixelColor,redEyeColor)
+    if(dist < 100):
+      newColor = makeColor(random.randint(0,255),random.randint(0,255),random.randint(0,255))
+      setColor(p,newColor)
+
 def testRedEye():
   # Set this path to where your module 2 github repository is
   rootPath = r'C:\dev\csumb_nwtech\Module 2'
@@ -116,40 +126,45 @@ def chromakey(foregroundPic,backgroundPic):
 
 
 def testProblem1():
-  rootPath = r'C:\dev\csumb_nwtech\Module 2'
+  rootPath = r'C:\dev\cs205\csumb_nwtech\Module 2'
   originalPath = os.path.join(rootPath,"1.jpg")
   originalPic = makePicture(originalPath)
   originalPic = makeSepia(originalPic)
+  writePictureTo(originalPic,os.path.join(rootPath,"sepia.png"))
   show(originalPic)
 
 def testProblem2():
-  rootPath = r'C:\dev\csumb_nwtech\Module 2'
+  rootPath = r'C:\dev\cs205\csumb_nwtech\Module 2'
   originalPath = os.path.join(rootPath,"1.jpg")
   originalPic = makePicture(originalPath)
   originalPic = Artify(originalPic)
+  writePictureTo(originalPic,os.path.join(rootPath,"artify.png"))
   show(originalPic)
 
 def testProblem3():
   rootPath = ''
-  rootPath = r'C:\dev\csumb_nwtech\Module 2\Green Screens'
+  rootPath = r'C:\dev\cs205\csumb_nwtech\Module 2\Green Screens'
 
   foregroundPath = os.path.join(rootPath,"eagle.png")
   backgroundPath = os.path.join(rootPath,"outdoors.jpg")
   backgroundPic = makePicture(backgroundPath)
   foregroundPic = makePicture(foregroundPath)
-  foregroundPic = chromakey(foregroundPic,backgroundPic)
-  show(foregroundPic)
+  foregroundPic0 = chromakey(foregroundPic,backgroundPic)
+  #show(foregroundPic0)
+  writePictureTo(foregroundPic0,os.path.join(rootPath,"eagle_outdoors.png"))
   foregroundPath = os.path.join(rootPath,"Richie Still 3.png")
   backgroundPath = os.path.join(rootPath,"fall.jpg")
   backgroundPic = makePicture(backgroundPath)
   foregroundPic = makePicture(foregroundPath)
-  foregroundPic = chromakey(foregroundPic,backgroundPic)
-  show(foregroundPic)
+  foregroundPic1 = chromakey(foregroundPic,backgroundPic)
+  #show(foregroundPic1)
+  writePictureTo(foregroundPic1,os.path.join(rootPath,"richie_still_fall.png"))
   foregroundPath = os.path.join(rootPath,"curtains.png")
   backgroundPath = os.path.join(rootPath,"opera_singer.jpg")
   backgroundPic = makePicture(backgroundPath)
   foregroundPic = makePicture(foregroundPath)
-  foregroundPic = chromakey(foregroundPic,backgroundPic)
-  show(foregroundPic)
+  foregroundPic2 = chromakey(foregroundPic,backgroundPic)
+  #show(foregroundPic)
+  writePictureTo(foregroundPic2,os.path.join(rootPath,"opera_singer_curtains.png"))
   return
   
