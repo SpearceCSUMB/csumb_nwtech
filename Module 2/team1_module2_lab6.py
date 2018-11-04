@@ -1,4 +1,3 @@
-# commet 
 #Team 1: Northwestern Technology
 #Brian Sheridan
 #Craig Calvert
@@ -139,12 +138,18 @@ def testProblem3():
   backgroundPic = makePicture(backgroundPath)
   foregroundPic = makePicture(foregroundPath)
   foregroundPic = chromakey(foregroundPic,backgroundPic)
-  show(foregroundPic)  
-  return
+  show(foregroundPic)
   foregroundPath = os.path.join(rootPath,"Richie Still 3.png")
   backgroundPath = os.path.join(rootPath,"fall.jpg")
   backgroundPic = makePicture(backgroundPath)
   foregroundPic = makePicture(foregroundPath)
   foregroundPic = chromakey(foregroundPic,backgroundPic)
   show(foregroundPic)
+  foregroundPath = os.path.join(rootPath,"curtains.png")
+  backgroundPath = os.path.join(rootPath,"opera_singer.jpg")
+  backgroundPic = makePicture(backgroundPath)
+  foregroundPic = makePicture(foregroundPath)
+  foregroundPic = chromakey(foregroundPic,backgroundPic)
+  show(foregroundPic)
+  return
   
