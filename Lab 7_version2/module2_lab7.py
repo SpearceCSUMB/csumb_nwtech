@@ -1,5 +1,7 @@
 #CST205
 #Module 2: Lab 7
+#Kevin Bentley
+#Samuel Pearce
 
 #Warm Up
 
@@ -117,10 +119,3 @@ def problem1():
   newPic = thanksgivingCard(foregroundPic, backgroundPic, turkey)
   writePictureTo(newPic, '/Users/craigcalvert/Documents/GitHub/csumb_nwtech/Lab 7_version2/problem1_pictures/thanksgivingCard.png')
   show(newPic)
-  
-  
-  
-  
-  
-  
-  
