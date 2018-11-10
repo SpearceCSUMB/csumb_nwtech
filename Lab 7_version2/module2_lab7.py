@@ -41,10 +41,86 @@ def snowman(pic):
 
 #Problem 1
 
+#Sepia method from lab 6, problem #1
+def makeSepia(pic):
+  pixels = getPixels(pic)
+  for p in pixels:
+    r = getRed(p)
+    g = getGreen(p)
+    b = getBlue(p)
+    luminance = r*0.299 + g*0.587 + b*0.114
+    redMult = 1
+    blueMult = 1
+    if(r < 63):
+      redMult = 1.1
+      blueMult = 0.9
+    elif(62 < r and r < 192):
+      redMult = 1.15
+      blueMult = 0.85
+    else:
+      redMult = 1.08
+      blueMult = 0.93    
+    r = redMult * luminance
+    r = min(r,255)
+    b = blueMult * luminance
+    setRed(p,r)
+    setGreen(p,luminance)
+    setBlue(p,b)
+  return pic
+
+#Chroma-key method from lab 6, problem #3
+def chromakey(foregroundPic,backgroundPic):
+  if(foregroundPic.getWidth() != backgroundPic.getWidth() or
+    foregroundPic.getHeight() != backgroundPic.getHeight()):
+    print("Foreground and background pictures must be the same size.")
+  greenScreenColor = makeColor(0,255,0)
+  foregroundPixels = getPixels(foregroundPic)
+  for row in range(foregroundPic.getHeight()):
+      for col in range(foregroundPic.getWidth()):
+        foregroundPixel = getPixel(foregroundPic,col,row)
+        pixelColor = getColor(foregroundPixel)
+        dist = distance(pixelColor,greenScreenColor)
+        if(dist < 185):
+          backgroundPixel = getPixel(backgroundPic,col,row)
+          backgroundColor = getColor(backgroundPixel)
+          setColor(foregroundPixel,backgroundColor)
+  return foregroundPic
+
+def thanksgivingCard(foregroundPic, backgroundPic, subject):
+  backgroundPic = makeSepia(backgroundPic)
+  backgroundPic = chromakey(subject, backgroundPic)
+  pic = chromakey(foregroundPic, backgroundPic)
+  style1 = makeStyle(mono, bold, 255)
+  style2 = makeStyle(mono, bold, 155)
+  addTextWithStyle(pic, 371, 350, "Happy", style1, white)
+  addTextWithStyle(pic, 161, 1846, "Thanksgiving!", style2, white)
+  return pic
+
+#Method tests
+
 def testWarmup():
-  rootPath = r'/Users/craigcalvert/Documents/GitHub/csumb_cst205/Lab 7/warmup_pictures'
+  rootPath = r'/Users/craigcalvert/Documents/GitHub/csumb_nwtech/Lab 7_version2/warmup_pictures'
   originalPath = os.path.join(rootPath, "desert.jpg")
   originalPic = makePicture(originalPath)
   originalPic = snowman(originalPic)
-  writePictureTo(originalPic, '/Users/craigcalvert/Documents/GitHub/csumb_cst205/Lab 7/warmup_pictures/snowman_output.jpg')
+  writePictureTo(originalPic, '/Users/craigcalvert/Documents/GitHub/csumb_nwtech/Lab 7_version2/warmup_pictures/snowman_output.jpg')
   show(originalPic)
+  
+def problem1():
+  rootPath = r'/Users/craigcalvert/Documents/GitHub/csumb_nwtech/Lab 7_version2/problem1_pictures'
+  foregroundPath = os.path.join(rootPath, "cardFrame.png")
+  backgroundPath = os.path.join(rootPath, "background.png")
+  subjectPath = os.path.join(rootPath, "turkey.png")
+  foregroundPic = makePicture(foregroundPath)
+  backgroundPic = makePicture(backgroundPath)
+  turkey = makePicture(subjectPath)
+  newPic = thanksgivingCard(foregroundPic, backgroundPic, turkey)
+  writePictureTo(newPic, '/Users/craigcalvert/Documents/GitHub/csumb_nwtech/Lab 7_version2/problem1_pictures/thanksgivingCard.png')
+  show(newPic)
+  
+  
+  
+  
+  
+  
+  
