@@ -3,7 +3,7 @@ def doubley(source):
   root = os.path.dirname(os.path.realpath(__file__))
   art = root = os.path.join(os.path.dirname(os.path.realpath(__file__)),"Clipart")
   pic1 = makePicture(source)
-  print "Choose another picture to combined with the original" 
+  print "Choose another picture to combined with the original." 
   pic2 = makePicture(pickAFile())
   pic3 = makeEmptyPicture(min(getWidth(pic1),getWidth(pic2)),min(getHeight(pic1),getHeight(pic2)))
   pic4 = makePicture(os.path.join(root,"4.jpg"))  
