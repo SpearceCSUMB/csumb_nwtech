@@ -1,4 +1,4 @@
-# Brian Sheridan And 
+# Brian Sheridan And Kevin Bentley
 # CST 205 
 # Midterm Project CSUMB-y
 
@@ -11,11 +11,13 @@ def csumb(source):
   pic2 = makePicture(os.path.join(root,"2.jpg"))
   pic3 = makePicture(os.path.join(root,"3.jpg"))  
   pic4 = makePicture(os.path.join(root,"4.jpg"))  
+# COLLECT USER INPUT FOR BANNER
+  text = raw_input("Type input for banner: ")
 # MANIPULATE IMAGES VIA FUNCTIONS  
   greenScreen(pic1,pic2,0,0)
   startX = getWidth(pic1) - 251
   greenScreen(pic1,pic3,startX,0)  
-  bannerFill(pic1)
+  bannerFill(pic1,text)
   startX = getWidth(pic1) - getWidth(pic4)
   startY = getHeight(pic1) - getHeight(pic4)
   greenScreen(pic1,pic4,startX,startY)
@@ -39,7 +41,7 @@ def greenScreen(source,targetP,targetX,targetY):
 
 # FUNCTION BANNERFILL
 #- BUILD A BANNER ACROSS THE PICTURE AND FILLS IT WITH TEXT
-def bannerFill(source):
+def bannerFill(source,text):
 # BUILDS TEHE COLOR OF THE BANNER
   nColor = makeColor(20,34,159)
 # CYCLES THROUGH THE SOURCE PICTURE AND FILLS IN PIXELS WITH THE BANNER COLOR  
@@ -48,5 +50,6 @@ def bannerFill(source):
       setColor(getPixel(source,x,y),nColor)
 # PRINT TEXT IN THE BANNER      
   style = makeStyle(mono,italic + bold,54)
-  addTextWithStyle(source,(getWidth(source)/ 2) - 302,96,"CSUMB Class of 2020",style,white)
+  offset = (len(text) / 2) * 30
+  addTextWithStyle(source,(getWidth(source)/ 2) - offset,96,text,style,white)
   return source
