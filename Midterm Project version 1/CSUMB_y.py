@@ -12,7 +12,7 @@ def csumb(source):
   pic3 = makePicture(os.path.join(root,"3.jpg"))  
   pic4 = makePicture(os.path.join(root,"4.jpg"))  
 # COLLECT USER INPUT FOR BANNER
-  text = raw_input("Type input for banner: ")
+  text = requestString("Type input for your banner.")
 # MANIPULATE IMAGES VIA FUNCTIONS  
   greenScreen(pic1,pic2,0,0)
   startX = getWidth(pic1) - 251
