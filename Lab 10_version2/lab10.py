@@ -46,7 +46,7 @@ def getLetter():
   ltr = requestString(prompt)
   #If more or less than one character is entered or
   #the character entered is not a letter keep prompting
-  while(len(ltr)!=1 or (not ltr.isalpha())):
+  while(ltr == None or len(ltr)!=1 or (not ltr.isalpha())):
     print("Letters only please!")
     ltr = requestString(prompt)
   return ltr.lower()
@@ -70,7 +70,7 @@ def hangman():
       if(ltr not in wrongGuesses):
         wrongGuesses.append(ltr)
     if(printWord(secretWord,correctGuesses)):
-      print("Congratulations you win!")
-      return True
+      print "Congratulations you win!"
+      return
     printIncorrectGuesses(wrongGuesses, maxWrongGuesses)
   print("Sorry, you lose.  Better luck next time!")
