@@ -3,11 +3,11 @@
 # Midterm Project CSUMB-y
 
 # Main 
-def CSUMB():
+def csumb(source):
 # FIND THE PATH TO THE CURRENT DIRECTORY AND ADD THE CLIPART FOLDER 
   root = os.path.join(os.path.dirname(os.path.realpath(__file__)),"Clipart")
 # IMPORT THE PICTURES THAT WILL BE USED  
-  pic1 = makePicture(pickAFile())
+  pic1 = makePicture(source)
   pic2 = makePicture(os.path.join(root,"2.jpg"))
   pic3 = makePicture(os.path.join(root,"3.jpg"))  
   pic4 = makePicture(os.path.join(root,"4.jpg"))  
