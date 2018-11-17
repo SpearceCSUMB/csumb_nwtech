@@ -60,6 +60,7 @@ def hangman():
   correctGuesses = []
   wrongGuesses = []
   ltr = ''
+  printWord(secretWord,correctGuesses)
   while(len(wrongGuesses) < maxWrongGuesses):
     ltr = getLetter()
     if (ltr in secretWord):
